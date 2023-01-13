@@ -1,0 +1,178 @@
+<html lang="en">
+<head>
+<title>Ntrack - Rastreamento, acompanhamento veicular e
+	Gerenciador de rotas</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="js/xlsx.js"></script>
+<script src="js/xlsx_xlsxworker2.js"></script>
+<script src="js/importAlert.js"></script>
+<script src="js/polyline.js"></script>
+
+
+</head>
+<body style="height: 1500px">
+
+
+
+	<h1>Detran CE: POIs 4x4</h1>
+	<div class="form-group">
+		<label class="btn btn-danger btn-file  btn-block"> Importar
+			Pontos Detran CE <input type="file" style="display: none;" id="xlf">
+		</label>
+	</div>
+
+	<div id="googleMap" style="width: 100%; height: 600;"></div>
+
+
+
+	<script>
+		var xlf = document.getElementById('xlf');
+		if (xlf.addEventListener)
+			xlf.addEventListener('change', handleFile, false);
+
+		var map;
+
+		function myMap() {
+			var mapProp = {
+				center : new google.maps.LatLng(-5.2447052, -36.7909283),
+				zoom : 7,
+				zoomControl : true,
+				mapTypeControl : true,
+				scaleControl : true,
+				streetViewControl : true,
+				rotateControl : true,
+				fullscreenControl : true
+			};
+
+			map = new google.maps.Map(document.getElementById("googleMap"),	mapProp);
+			map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+			
+			
+			var pl1 = '|~pU|zojFc_@daBP~TcPjSnF~j@{S|}ArAnc@g@zNy]ddAcn@jfAmr@jbA{fBp_Bsu@xv@af@hw@eYr{@_]lj@{Kzp@eYpz@kb@feAqy@x`A}eAp|@keAzp@';
+			var pl2 = 'pfsTre|kFvJl^H`fAoBtc@qVnhA_Zre@';
+			var pl3 = 'rpmTl}hlF_RnSgDbDoGpJeKrKeCjE_E`J{@vBEbJxAhEyBrQeAtC^lKwB~FThHjD~G_B|JqG|O{f@|c@}z@xd@yvAre@';
+			var pl4 = '`mvS|jamFdFtIdEzNbDxKxGpFtEz@'
+			var pl5 = 'nywSh_emF|EpNlA|LfCpF`OjHpJ`KrD`Kc@jZdAdTdGxTcAjL_]~oAiSji@';
+			var pl6 = 'xjlSh{ymFcAxWzDbHcCtTcYzl@';
+			var pl7 = '~|wRpxlnF{LjVeEpVoUh]ga@bb@yYvX}Xxr@oI~g@`CxU`HzViDfk@';
+			var pl8 = '~mqRdy{nFs@v`@qG|ScPxY';
+			var pl9 = 'nykRtlcoFuH`]iSp]eAlq@hCbWlTpUhKb^jDhY';
+			var pl10 = 'lbgRdrroFbAvXkj@hfAmEfg@wBlj@gRhmA';
+			var pl11 = '`f_Pf}cvFwI`]fJdXdIzYr@rWvJpU~Et_@hKjDnUkLjL~F~TzK';
+			var pl12 = '~`tPfghxFinAja@mr@f`@_{@re@hCj_AgBn~Aa@hkB`^xJ';
+			var pl13 = 'vt_VvqqiFpcGs`Dju@y`@vzCicBnjFyeD~yBwiBfnAwsAf_BewBvZwr@nUgg@dMct@wMwM`Gcb@jL{Z~Y}StP{K';
+			var pl14 = 'bxkW`cjhFfr@wg@';
+			var pl15 = 'f_pWbyfhFf~@_k@jJoHBkBbNqKvHwK`I{GbGoMtEkLv@eGtDqJnGeGnwAk~@';
+			var pl16 = 'bh~Wn_{gFnl@oc@';
+			var pl17 = 'r`hXhotgFft@ap@rW{]vQ}T';
+			var pl18 = 'ppmXrtngF`S_R`Q{PvHiGbHkJrN_LnJaKdMkO`IuC|IuH';
+			var pl19 = 'xtvXtyegFnNwMnJoMxGwMhC}Hh@kKbL_K';
+			var pl20 = '`oiYvbpfFlbAqaA';
+			var pl21 = 'fpuYvzafFlM}^xNuP';
+			var pl22 = 'lizYhyreFxGoOqAaMpIwTwBsHuAqOuG_G';
+			var pl23 = '`oqZr_deFtM}SbPwTbEmMnRoQbT{V~E{G';
+			var pl24 = 'bjwZnl}dFngD}xC';
+			var pl25 = 'xhj[pgwcFjW{^|Mub@~BcZHyE}BsGjCmH|GmOlG{ShHmN~BeKcCsBlC}D';
+			
+			
+
+			
+			drawPolyline(pl1);
+			drawPolyline(pl2);
+			drawPolyline(pl3);
+			drawPolyline(pl4);
+			drawPolyline(pl5);
+			drawPolyline(pl6);
+			drawPolyline(pl7);
+			drawPolyline(pl8);
+			drawPolyline(pl9);
+			drawPolyline(pl10);
+			drawPolyline(pl11);
+			drawPolyline(pl12);
+			drawPolyline(pl13);
+			drawPolyline(pl14);
+			drawPolyline(pl15);
+			drawPolyline(pl16);
+			drawPolyline(pl17);
+			drawPolyline(pl18);
+			drawPolyline(pl19);
+			drawPolyline(pl20);
+			drawPolyline(pl21);
+			drawPolyline(pl22);
+			drawPolyline(pl23);
+			drawPolyline(pl24);
+			drawPolyline(pl25);
+			drawPolyline(pl26);
+			
+		    
+
+		   
+
+		}
+
+		function drawPolyline(encodePolyline) {
+			//Decofica a polyine
+			var decodePolyline = polyline.decode(encodePolyline);
+			var coordinates = [];
+			var numberPoints = decodePolyline.length;
+
+			//Cria um array de latlngs
+			for (var k = 0; k < numberPoints; k++) {
+				coordinates.push(new google.maps.LatLng(decodePolyline[k][0],
+						decodePolyline[k][1]));
+			}
+
+			//Remove qualquer polyline antiga
+			//clearPolyline();
+
+			//Cria uma nova polyline
+			line = new google.maps.Polyline({
+				path : coordinates,
+				geodesic : true,
+				 strokeColor: "#FF0000",
+				strokeOpacity : 0.6,
+				strokeWeight : 6
+			});
+
+			//Adiciona a polyline no mapa
+			line.setMap(map);
+
+			line.addListener('click', function() {
+				getPathVariableCode(line);
+			});
+
+			function getPathVariableCode(line) {
+				var codeStr = '  var linePath = [\n';
+				var pathArr = line.getPath();
+				for (var i = 0; i < pathArr.length; i++) {
+					codeStr += '    {lat: ' + pathArr.getAt(i).lat()
+							+ ', lng: ' + pathArr.getAt(i).lng() + '}';
+					if (i !== pathArr.length - 1) {
+						codeStr += ',\n';
+					}
+					;
+				}
+				;
+				codeStr += '\n  ];';
+				//the coordinates path it´s print on the console of the browser
+				console.log(line);
+				console.log(pathArr.length);
+				console.log(codeStr);
+			}
+			;
+
+		}
+	</script>
+
+	<script async defer					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_rRRblpQ_o7jqj4LEVGsdV32Pl7Dks6Q&callback=myMap"></script>
+
+		
+
+
+</body>
+</html>
